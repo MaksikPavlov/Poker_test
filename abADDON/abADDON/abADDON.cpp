@@ -13,30 +13,12 @@ void rand_arr() {
 		pocket[i] = rand() % 13 + 1;
 	};
 }
-int main() {
+
+void file_arr(){
 	ofstream fout;
 	ifstream fin;
-
-	/*fout.open("ex.txt");
-	if (!fout.is_open()) {
-		cout << "Error!" << '\n';
-	}
-	else {
-		string stroka;
-		cout << "Input stroka: ";
-		cin >> stroka;
-		fout << stroka;
-		}
-	fout.close();*/
-
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	//
-	//для каждого отдельного примера в функциях bool заменить название файла!
-	//
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 	string str = "";
-	fin.open("ex.txt");
+	fin.open("Set.txt");//сюда нужно будет просто впихнуть имя файла
 	if (!fin.is_open()) {
 		cout << "Troble!" << '\n';
 	}
@@ -45,26 +27,28 @@ int main() {
 			getline(fin, str);
 		}
 		cout << str << '\n';
-
-		string probel = " ";
-		string controlstr = ",.:;";
-		for (int i = 0; i < str.length(); i++)
-			for (int j = 0; j < 4; j++) {
-				if (str.at(i) == controlstr.at(j)) {
-					str.insert(i + 1, probel);
-					i++;
-				};
-			};
 	}
 	fin.close();
 
-	fout.open("ex.txt");
+	pocket[0] = str[0];
+	pocket[1] = str[2];
+	pocket[2] = str[4];
+	pocket[3] = str[6];
+	pocket[4] = str[8];
+
+	/*fout.open("ex.txt");//сюда нужно будет просто впихнуть имя файла
 	if (!fout.is_open()) {
 		cout << "Error!" << '\n';
 	}
 	else {
 		fout << str;
 	}
-	fout.close();
+	fout.close();*/
+}
+int main() {
+	rand_arr();
+	for (int i = 0; i < 5; i++)
+		cout << pocket[i] << " ";
+	cout << '\n';
 	return 0;
 }

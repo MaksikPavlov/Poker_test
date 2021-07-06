@@ -1,0 +1,51 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<ctime>
+
+using namespace std;
+
+int pocket[5];
+
+ifstream fin;
+
+//функция для рандомайзера без привязки к файлу
+void rand_arr() {
+	srand(time(0));
+	for (int i = 0; i < 5; i++) {
+		pocket[i] = rand() % 13 + 1;
+	};
+}
+
+//функция для чтения из файла
+void file_arr(string path) {
+	fin.open(path);
+	if (!fin.is_open())
+		cout << "Error!" << '\n';
+	else {
+		string str;
+		while (!fin.eof()) {
+			getline(fin, str);
+		};
+		char ch[5]; char space = ' ';
+		for (int i = 0; i < 9; i += 2){
+			int j = i % 2;
+			ch[j] = str[i];
+			cout << ch[j] << " ";
+			};
+		cout << '\n';
+		for (int i = 0; i < 5; i++) {
+			static_cast<int>(ch[i] - '0');
+			pocket[i] = ch[i];
+			cout << pocket[i] << " ";
+		};
+		cout << '\n';
+	};
+	fin.close();
+}
+
+	int main() {
+		file_arr("test.txt");
+
+		return 0;
+	}
